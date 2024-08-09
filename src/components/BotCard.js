@@ -1,7 +1,9 @@
 import React from "react";
 import "./BotCard.css";
 
+//  component function for the BotCard
 const BotCard = ({ botData, onBotClick, onDischargeClick }) => {
+  // Destructuring properties from botData
   const { name, avatar_url, health, damage, armor } = botData;
 
   return (
@@ -11,10 +13,12 @@ const BotCard = ({ botData, onBotClick, onDischargeClick }) => {
       <p>Health: {health}</p>
       <p>Damage: {damage}</p>
       <p>Armor: {armor}</p>
+      {/* Logically render discharge button if onDischargeClick is clicked/given */}
       {onDischargeClick && (
         <button
           className="discharge-button"
           onClick={(e) => {
+            // Prevent event bubbling & Handle discharge click
             e.stopPropagation();
             onDischargeClick(botData);
           }}

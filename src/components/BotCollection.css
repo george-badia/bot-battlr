@@ -1,0 +1,21 @@
+.bot-collection-container-title {
+   font-size: 24px;
+   font-weight: bold;
+   color: #333;
+   position: sticky;
+   top: 0;
+   background-color: transparent;
+   border: 2px solid rgb(174, 209, 240);
+   padding: 1rem;
+   z-index: 10;
+ }
+.bot-collection-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 16px;
+   padding: 20px;
+   background-color: aliceblue;
+   border-radius: 8px;
+ }
+ 
