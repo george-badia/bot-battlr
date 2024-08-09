@@ -6,6 +6,7 @@ import "./App.css";
 const App = () => {
   return (
     <div className="app-container">
+      <YourBotArmy />
       <BotCollection />
     </div>
   );
