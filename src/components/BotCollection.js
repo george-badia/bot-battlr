@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import BotCard from "./BotCard";
+import "./BotCollection.css";
 
-const BotCollection = () => {
+// Function component for the BotCollection
+const BotCollection = ({ botsList, enlistBotHandler }) => {
   return (
-    <div>BotCollection</div>
-  )
-}
+    <>
+      <div>
+        <h2 className="bot-collection-container-title">Your Bot Army</h2>
+      </div>
 
-export default BotCollection
+      <div className="bot-collection-container">
+        {/* Map through botsList and render BotCard for each robot */}
+
+        {botsList.map((bot) => (
+          <BotCard key={bot.id} botData={bot} onBotClick={enlistBotHandler} />
+        ))}
+      </div>
+    </>
+  );
+};
+
+export default BotCollection;
