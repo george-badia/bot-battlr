@@ -8,8 +8,30 @@
    cursor: pointer;
    transition: transform 0.3s ease;
  }
+ 
+ .bot-card:hover {
+   transform: scale(1.05);
+ }
+ 
  .bot-avatar {
    width: 100px;
    height: 100px;
    border-radius: 50%;
  }
+ 
+ .bot-name {
+   font-size: 18px;
+   font-weight: bold;
+   margin-top: 10px;
+ }
+ 
+ .discharge-button {
+   background-color: #ef4444;
+   color: white;
+   border: none;
+   padding: 8px;
+   border-radius: 4px;
+   cursor: pointer;
+   margin-top: 10px;
+ }
+ 
