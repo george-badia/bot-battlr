@@ -3,58 +3,77 @@ import BotCollection from "./components/BotCollection";
 import YourBotArmy from "./components/YourBotArmy";
 import "./App.css";
 
-const App = () => {
+function App() {
   // State to store all bots and enlisted bots
   const [allBots, setAllBots] = useState([]);
   const [enlistedBots, setEnlistedBots] = useState([]);
 
   // Fetch all bots from the server on component mount
-  useEffect(() => {
+  useEffect(function () {
     fetch("http://localhost:8001/bots")
-      .then((response) => response.json())
-      .then((data) => setAllBots(data))
-      .catch((error) =>
-        console.error("Error fetching can't find bots:", error)
-      );
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setAllBots(data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching bots:", error);
+      });
   }, []);
-  //enlistBotHandler to addBot into the enlistedBots state
-  const enlistBotHandler = (bot) => {
-    if (!enlistedBots.some((enlistedBot) => enlistedBot.id === bot.id)) {
+
+  // Function to add a bot into the enlistedBots state
+  function enlistBot(bot) {
+    if (
+      !enlistedBots.some(function (enlistedBot) {
+        return enlistedBot.id === bot.id;
+      })
+    ) {
       setEnlistedBots([...enlistedBots, bot]);
     }
-  };
-  // releaseBotHandler to removeBot from the enlistedBots state in your bot army.
-  const releaseBotHandler = (bot) => {
+  }
+
+  // Function to remove a bot from the enlistedBots state in Your Bot Army
+  function releaseBot(bot) {
     setEnlistedBots(
-      enlistedBots.filter((enlistedBot) => enlistedBot.id !== bot.id)
+      enlistedBots.filter(function (enlistedBot) {
+        return enlistedBot.id !== bot.id;
+      })
     );
-  };
-  // Handler responsible to discharge a bot by making a DELETE request to the server...(n/b:rmbr to persist)
-  const dischargeBotHandler = (bot) => {
+  }
+
+  // Function to discharge a bot by making a DELETE request to the server
+  function dischargeBot(bot) {
     fetch(`http://localhost:8001/bots/${bot.id}`, {
       method: "DELETE",
     })
-      .then(() => {
-        setAllBots(allBots.filter((allBot) => allBot.id !== bot.id));
-        releaseBotHandler(bot);
+      .then(function () {
+        setAllBots(
+          allBots.filter(function (allBot) {
+            return allBot.id !== bot.id;
+          })
+        );
+        releaseBot(bot);
       })
-      .catch((error) => console.error("Error discharging bot:", error));
-  };
+      .catch(function (error) {
+        console.error("Error discharging bot:", error);
+      });
+  }
+
   // Rendering YourBotArmy and BotCollection components by passing respective props
   return (
     <div className="app-container">
       <YourBotArmy
         enlistedBots={enlistedBots}
-        releaseBotHandler={releaseBotHandler}
-        dischargeBotHandler={dischargeBotHandler}
+        releaseBotHandler={releaseBot}
+        dischargeBotHandler={dischargeBot}
       />
-      <BotCollection botsList={allBots} enlistBotHandler={enlistBotHandler} />
+      <BotCollection botsList={allBots} enlistBotHandler={enlistBot} />
     </div>
   );
-};
+}
 
 export default App;
-
 //App
 //render botCollection to show all bots
 //render YourBotArmy to show enlisted bots

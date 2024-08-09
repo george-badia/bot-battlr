@@ -31,3 +31,8 @@ const BotCard = ({ botData, onBotClick, onDischargeClick }) => {
 };
 
 export default BotCard;
+
+//BotCard
+//this component presents individual bot/robot details
+//receives bot data and events through props
+//an onClick event is incorporated for adding bot to army,reliving bot from army and discharging bot from army.

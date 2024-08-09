@@ -28,3 +28,8 @@ const YourBotArmy = ({
 };
 
 export default YourBotArmy;
+
+//YourBotArmy
+//this displays bots that have been enlisted (only once).
+//it receives list of enlisted bots and function to release bot via props
+//the onClick event is used to discharge or delete the robot permanently.

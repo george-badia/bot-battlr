@@ -7,7 +7,7 @@ const BotCollection = ({ botsList, enlistBotHandler }) => {
   return (
     <>
       <div>
-        <h2 className="bot-collection-container-title">Your Bot Army</h2>
+        <h2 className="bot-collection-container-title">Bot Collection</h2>
       </div>
 
       <div className="bot-collection-container">
@@ -22,3 +22,8 @@ const BotCollection = ({ botsList, enlistBotHandler }) => {
 };
 
 export default BotCollection;
+
+//BotCollection
+//this component displays all bots fetched from the server
+//props will receive the list of robots and function to enlist and release the bots.
+//finally incorporating onClick to enlist bot and release it from the army.
