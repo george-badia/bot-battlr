@@ -46,3 +46,27 @@
  }
  
  
+.Support {
+   background-color: #e0f7fa;
+ }
+ 
+ .Medic {
+   background-color: #ffe0b2; 
+ }
+ 
+ .Assault {
+   background-color: #ffccbc;
+ }
+ 
+ .Defender {
+   background-color: #c8e6c9; 
+ }
+ 
+ .Captain {
+   background-color: #d1c4e9; 
+ }
+ 
+ .Witch {
+   background-color: #f8bbd0; 
+ }
+ 
