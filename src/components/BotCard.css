@@ -34,4 +34,26 @@
    cursor: pointer;
    margin-top: 10px;
  }
- 
+ .bot-card.Support {
+  background-color: #e0f7fa; 
+}
+
+.bot-card.Medic {
+  background-color: #ffe0b2; 
+}
+
+.bot-card.Assault {
+  background-color: #ffccbc; 
+}
+
+.bot-card.Defender {
+  background-color: #c8e6c9; 
+}
+
+.bot-card.Captain {
+  background-color: #d1c4e9; 
+}
+
+.bot-card.Witch {
+  background-color: #f8bbd0; 
+}
