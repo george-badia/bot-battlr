@@ -10,7 +10,7 @@ function App() {
 
   // Fetch all bots from the server on component mount
   useEffect(function () {
-    fetch("http://localhost:8001/bots")
+    fetch("http://localhost:8003/bots")
       .then(function (response) {
         return response.json();
       })
@@ -44,7 +44,7 @@ function App() {
 
   // Function to discharge a bot by making a DELETE request to the server
   function dischargeBot(bot) {
-    fetch(`http://localhost:8001/bots/${bot.id}`, {
+    fetch(`http://localhost:8003/bots/${bot.id}`, {
       method: "DELETE",
     })
       .then(function () {
@@ -74,6 +74,7 @@ function App() {
 }
 
 export default App;
+
 //App
 //render botCollection to show all bots
 //render YourBotArmy to show enlisted bots
