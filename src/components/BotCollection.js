@@ -1,4 +1,3 @@
-export default BotCollection;
 import React from "react";
 import BotCard from "./BotCard";
 import "./BotCollection.css";

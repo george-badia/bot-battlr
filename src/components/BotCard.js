@@ -3,7 +3,7 @@ import React from "react";
 import "./BotCard.css";
 //  component function for the BotCard
 function BotCard({ botData, onBotClick, onDischargeClick }) {// Destructuring properties from botData
-  const { name, avatar_url, health, damage, armor, bot_class } = botData;
+  const { name, avatar_url, health, damage, armor, bot_class,updated_at,created_at} = botData;
 
   return (
     <div

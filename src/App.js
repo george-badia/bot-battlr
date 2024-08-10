@@ -7,18 +7,18 @@ import "./App.css";
 
 function App() {
   // State to store all bots and enlisted bots
-  const [allBots, setAllBots] = useState([]);
+  const [allRoBots, setAllRoBots] = useState([]);
   const [enlistedBots, setEnlistedBots] = useState([]);
   const [selectedBot, setSelectedBot] = useState(null);
   const [sortCriteria, setSortCriteria] = useState("");
  // Fetch all bots from the server on component mount
   useEffect(function () {
-    fetch("http://localhost:8001/bots")
+    fetch("http://localhost:8003/bots")
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        setAllBots(data);
+        setAllRoBots(data);
       })
       .catch(function (error) {
         console.error("Error fetching bots:", error);
@@ -38,8 +38,8 @@ function App() {
     }
 
     setEnlistedBots([...enlistedBots, bot]);
-    setAllBots(
-      allBots.filter(function (b) {
+    setAllRoBots(
+      allRoBots.filter(function (b) {
         return b.id !== bot.id;
       })
     );
@@ -52,16 +52,16 @@ function App() {
         return enlistedBot.id !== bot.id;
       })
     );
-    setAllBots([...allBots, bot]);
+    setAllRoBots([...allRoBots, bot]);
   }
 // Function to discharge a bot by making a DELETE request to the server
   function dischargeBot(bot) {
-    fetch(`http://localhost:8001/bots/${bot.id}`, {
+    fetch(`http://localhost:8003/bots/${bot.id}`, {
       method: "DELETE",
     })
       .then(function () {
-        setAllBots(
-          allBots.filter(function (b) {
+        setAllRoBots(
+          allRoBots.filter(function (b) {
             return b.id !== bot.id;
           })
         );
@@ -89,9 +89,9 @@ function App() {
   }
 
   function getSortedBots() {
-    if (!sortCriteria) return allBots;
+    if (!sortCriteria) return allRoBots;
 
-    return [...allBots].sort((a, b) => b[sortCriteria] - a[sortCriteria]);
+    return [...allRoBots].sort((a, b) => b[sortCriteria] - a[sortCriteria]);
   }
 // Rendering YourBotArmy and BotCollection components by passing respective props
   return (
@@ -124,9 +124,18 @@ function App() {
 export default App;
 
 //App
-//render botCollection to show all bots
-//render YourBotArmy to show enlisted bots
-//use state to hold list of bot and the enlisted bots and useStateHook to fetch from "http://localhost:8001/bots" and store them in state
-//ENLIST BOT adds a bot to the army if only not enlisted
-//RELEASE BOT removes bot from the army
-//DISCHARGE BOT permanently deletes a bot from the army and the server.(uses DELETE REQUEST)
+/*
+- render botCollection to show all bots
+- render YourBotArmy to show enlisted bots
+- use state to hold list of bot and the enlisted bots and useStateHook to fetch from "http://localhost:8001/bots" and store them in state
+- ENLIST BOT adds a bot to the army if only not enlisted
+RELEASE BOT removes bot from the army
+- DISCHARGE BOT permanently deletes a bot from the army and the server.(uses DELETE REQUEST)
+- ADD STATE to track the currently selected bot.
+- Conditionally render BotSpecs or BotCollection based on whether a bot is selected.
+- ADDING  a function to handle going back to the list view.
+//SORTING
+- Add state to store the current sorting criteria.
+- Implement sorting logic in the useEffect hook or in the rendering of BotCollection.
+- Pass sorting criteria as props to BotCollection.
+*/
