@@ -10,7 +10,7 @@ const YourBotArmy = ({
   return (
     <>
       <div>
-        <h2 className="your-bot-army-title">Your Bot Army</h2>
+        <h2 className="your-bot-army-title">My Army</h2>
       </div>
       <div className="your-bot-army-container">
         {/* Maping through the enlistedBots and render BotCard for each robot,click event is utelized too */}

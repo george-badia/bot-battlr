@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   // State to store all bots and enlisted bots
-  const [allBots, setAllBots] = useState([]);
+  const [allRoBots, setAllRoBots] = useState([]);
   const [enlistedBots, setEnlistedBots] = useState([]);
 
   // Fetch all bots from the server on component mount
@@ -15,7 +15,7 @@ function App() {
         return response.json();
       })
       .then(function (data) {
-        setAllBots(data);
+        setAllRoBots(data);
       })
       .catch(function (error) {
         console.error("Error fetching bots:", error);
@@ -48,8 +48,8 @@ function App() {
       method: "DELETE",
     })
       .then(function () {
-        setAllBots(
-          allBots.filter(function (allBot) {
+        setAllRoBots(
+          allRoBots.filter(function (allBot) {
             return allBot.id !== bot.id;
           })
         );
@@ -68,7 +68,7 @@ function App() {
         releaseBotHandler={releaseBot}
         dischargeBotHandler={dischargeBot}
       />
-      <BotCollection botsList={allBots} enlistBotHandler={enlistBot} />
+      <BotCollection botsList={allRoBots} enlistBotHandler={enlistBot} />
     </div>
   );
 }
