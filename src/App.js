@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import BotCollection from "./components/BotCollection";
 import YourBotArmy from "./components/YourBotArmy";
+import BotSpecs from './components/BotSpecs';
 import "./App.css";
 
 function App() {
   // State to store all bots and enlisted bots
   const [allRoBots, setAllRoBots] = useState([]);
   const [enlistedBots, setEnlistedBots] = useState([]);
+  const [selectedBot, setSelectedBot] = useState(null);
 
   // Fetch all bots from the server on component mount
   useEffect(function () {
@@ -18,20 +20,24 @@ function App() {
         setAllRoBots(data);
       })
       .catch(function (error) {
-        console.error("Error fetching bots:", error);
+        console.log("Error fetching bots:", error);
       });
   }, []);
 
   // Function to add a bot into the enlistedBots state
   function enlistBot(bot) {
-    if (
-      !enlistedBots.some(function (enlistedBot) {
-        return enlistedBot.id === bot.id;
-      })
-    ) {
+    if (!enlistedBots.some(function (enlistedBot) {
+      return enlistedBot.bot_class === bot.bot_class;
+    })) {
       setEnlistedBots([...enlistedBots, bot]);
+      setAllRoBots(allRoBots.filter(function (b) {
+        return b.id !== bot.id;
+      }));
+      setSelectedBot(null);
     }
   }
+
+
 
   // Function to remove a bot from the enlistedBots state in Your Bot Army
   function releaseBot(bot) {
@@ -40,35 +46,49 @@ function App() {
         return enlistedBot.id !== bot.id;
       })
     );
+    setAllRoBots([...allRoBots, bot])
   }
 
   // Function to discharge a bot by making a DELETE request to the server
   function dischargeBot(bot) {
-    fetch(`http://localhost:8003/bots/${bot.id}`, {
-      method: "DELETE",
+    fetch(`http://localhost:8001/bots/${bot.id}`, {
+      method: 'DELETE',
     })
       .then(function () {
-        setAllRoBots(
-          allRoBots.filter(function (allBot) {
-            return allBot.id !== bot.id;
-          })
-        );
-        releaseBot(bot);
+        setAllRoBots(allRoBots.filter(function (b) {
+          return b.id !== bot.id;
+        }));
+        setEnlistedBots(enlistedBots.filter(function (enlistedBot) {
+          return enlistedBot.id !== bot.id;
+        }));
       })
       .catch(function (error) {
-        console.error("Error discharging bot:", error);
+        console.error('Error discharging bot:', error);
       });
   }
 
+  function showBotDetails(bot) {
+    setSelectedBot(bot);
+  }
+
+  function goBackToList() {
+    setSelectedBot(null);
+  }
   // Rendering YourBotArmy and BotCollection components by passing respective props
   return (
     <div className="app-container">
+       {selectedBot ? (
+        <BotSpecs selectedBot={selectedBot} onGoBack={goBackToList} onEnlist={enlistBot} />
+      ) : (
+        <>
       <YourBotArmy
         enlistedBots={enlistedBots}
         releaseBotHandler={releaseBot}
         dischargeBotHandler={dischargeBot}
       />
       <BotCollection botsList={allRoBots} enlistBotHandler={enlistBot} />
+      </>
+      )}
     </div>
   );
 }

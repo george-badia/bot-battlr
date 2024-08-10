@@ -1,0 +1,48 @@
+.bot-specs-container {
+   padding: 20px;
+   border-radius: 8px;
+   color: #000;
+   text-align: center;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   background-color: #fff; 
+ }
+ 
+ .bot-avatar {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 15px;
+ }
+ 
+ .bot-name {
+   margin: 10px 0;
+   font-size: 24px;
+   font-weight: bold;
+ }
+ 
+ .button-group {
+   margin-top: 20px;
+ }
+ 
+ .go-back-button,
+ .enlist-button {
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 16px;
+   margin: 5px;
+ }
+ 
+ .go-back-button {
+   background-color: #f0f0f0;
+   color: #333;
+ }
+ 
+ .enlist-button {
+   background-color: #4caf50;
+   color: #fff;
+ }
+ 
+ 
