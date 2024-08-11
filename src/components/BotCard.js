@@ -3,7 +3,7 @@ import React from "react";
 import "./BotCard.css";
 //  component function for the BotCard
 function BotCard({ botData, onBotClick, onDischargeClick }) {// Destructuring properties from botData
-  const { name, avatar_url, health, damage, armor, bot_class,updated_at,created_at} = botData;
+  const { name, avatar_url, health, damage, armor, bot_class} = botData;
 
   return (
     <div
@@ -15,7 +15,7 @@ function BotCard({ botData, onBotClick, onDischargeClick }) {// Destructuring pr
       <p>Class: {bot_class}</p>
       <p>Health: {health}</p>
       <p>Damage: {damage}</p>
-      <p>Armor: {armor}</p><p>Created at: {created_at}</p><p>Updated at: {updated_at}</p>
+      <p>Armor: {armor}</p>
       {/* &&operator to logically render discharge button if onDischargeClick is clicked/given */}
       {onDischargeClick && (
         <button

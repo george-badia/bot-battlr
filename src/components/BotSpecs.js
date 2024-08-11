@@ -3,7 +3,7 @@ import React from "react";
 import "./BotSpecs.css";
 
 const BotSpecs = ({ selectedBot, onGoBack, onEnlist }) => {
-  const { name, avatar_url, health, damage, armor, bot_class } = selectedBot;
+  const { name, avatar_url, health, damage, armor, bot_class,updated_at,created_at,catchphrase } = selectedBot;
 
   return (
     <div className={`bot-specs-container ${bot_class}`}>
@@ -13,6 +13,9 @@ const BotSpecs = ({ selectedBot, onGoBack, onEnlist }) => {
       <p>Health: {health}</p>
       <p>Damage: {damage}</p>
       <p>Armor: {armor}</p>
+      <p>Created at: {created_at}</p>
+      <p>Updated at: {updated_at}</p>
+      <p>catchphrase:{catchphrase}</p>
       <div className="button-group">
         <button onClick={onGoBack} className="go-back-button">
           Go Back

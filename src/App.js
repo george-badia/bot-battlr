@@ -31,7 +31,7 @@ function App() {
     const classAlreadyEnlisted = enlistedBots.some(
       (enlistedBot) => enlistedBot.bot_class === bot.bot_class
     );
- //  if a bot of the same class is already enlisted then give the alert
+ //  if a bot of the same class is already enlisted then it gives the alert"A bot of this class is already enlisted."
     if (classAlreadyEnlisted) {
       alert("A bot of this class is already enlisted.");
       return;
@@ -75,27 +75,28 @@ function App() {
         console.error("Error discharging bot:", error);
       });
   }
-
+// Sets the selected bot to display its details in the BotSpecs component
   function showBotDetails(bot) {
     setSelectedBot(bot);
   }
-
+ // Clears the selected bot, effectively going back to the bot list view
   function goBackToList() {
     setSelectedBot(null);
   }
-
+// Updates the sort criteria for sorting bots by health, damage, or armor
   function sortBots(criteria) {
     setSortCriteria(criteria);
   }
-
+// Returns the bots list sorted based on the selected criteria (health, damage, armor)
   function getSortedBots() {
     if (!sortCriteria) return allRoBots;
-
+// Sorts the bots in descending order based on the selected criteria
     return [...allRoBots].sort((a, b) => b[sortCriteria] - a[sortCriteria]);
   }
-// Rendering YourBotArmy and BotCollection components by passing respective props
+// Rendering YourBotArmy and BotCollection components by passing respective props and logic operation(conditional render)
   return (
     <div className="app-container">
+        {/* If a bot is selected, display the BotSpecs component */}
       {selectedBot ? (
         <BotSpecs
           selectedBot={selectedBot}
@@ -104,13 +105,17 @@ function App() {
           enlistedBots={enlistedBots}
         />
       ) : (
+         // If no bot is selected, display the main view with SortBar, YourBotArmy, and BotCollection.
         <>
+        <p className="welcome">Welcome to **Bot Battlr**, the one and only spot in the known universe where you can custom build your own Bot Army!</p>
           <SortBar onSort={sortBots} />
+          {/* Display the YourBotArmy component, passing enlisted bots and handlers for releasing and discharging bots */}
           <YourBotArmy
             enlistedBots={enlistedBots}
             releaseBotHandler={releaseBot}
             dischargeBotHandler={dischargeBot}
           />
+          {/* Display the BotCollection component, passing the sorted list of bots and the handler to show bot details */}
           <BotCollection
             botsList={getSortedBots()}
             enlistBotHandler={showBotDetails}
