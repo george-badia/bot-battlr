@@ -1,71 +1,68 @@
-# Getting Started with Create React App
+# Bot Battlr
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## August 2024
 
-## Available Scripts
+Bot Battlr is a React application where users can view, enlist, and manage a collection of bots in an army. Each bot belongs to a specific class and has unique attributes like health, damage, and armor.
 
-In the project directory, you can run:
+#### By **George Badia**
 
-### `npm start`
+This project was created and is the sole property of George Badia.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Bot Battlr displays a list of available bots that can be enlisted into an army. Users can sort bots by different criteria, view detailed specifications for each bot, and manage their army by enlisting, releasing, or permanently discharging bots.
 
-### `npm test`
+## Setup/Installation Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Linux or WSL for Windows users
+- Visual Studio Code installed
+- GitHub account
+- Web browser
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open your terminal and navigate to the desired directory.
+2. Clone the repository from https://github.com/george-badia/bot-battlr
+3. Clone the repository using the SSH key.
+4. `cd bot-battlr`
+5. Open the cloned repository in Visual Studio Code.
+6. Install the dependencies: `npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Start the JSON Server: `json-server --watch db.json --port 8003`
+2. Start the React application: `npm start`
+3. Open http://localhost:3000 in your browser to view the app.
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **App**: The main component that manages the state and renders the sort bar, bot collection, your bot army, and bot specifications.
+- **SortBar**: Allows users to sort bots by various criteria.
+- **BotCollection**: Displays a list of bots that can be enlisted.
+- **YourBotArmy**: Shows the bots that have been enlisted into the user's army.
+- **BotSpecs**: Displays detailed information about a selected bot.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Display a list of available bots with different classes and attributes.
+- Enlist bots into an army with the ability to manage them.
+- View detailed specifications of each bot.
+- Sort bots by class, health, damage, or armor.
+- Release or discharge bots from the army.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
+This program is built with:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React
+- CSS
+- JSON Server
+- Visual Studio Code environment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Support and Contact Details
 
-### Code Splitting
+For any issues, please email me at george.otieno1@student.moringaschool.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### License
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# bot-battlr
+This project is licensed under the MIT License.
