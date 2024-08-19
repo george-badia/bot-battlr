@@ -11,9 +11,9 @@ function App() {
   const [enlistedBots, setEnlistedBots] = useState([]);
   const [selectedBot, setSelectedBot] = useState(null);
   const [sortCriteria, setSortCriteria] = useState("");
- // Fetch all bots from the server on component mount
+  // Fetch all bots from the server on component mount
   useEffect(function () {
-    fetch("http://localhost:8003/bots")
+    fetch("https://json-botbattlr.onrender.com/bots")
       .then(function (response) {
         return response.json();
       })
@@ -25,13 +25,13 @@ function App() {
       });
   }, []);
 
-// Function to add a bot into the enlistedBots state
+  // Function to add a bot into the enlistedBots state
   function enlistBot(bot) {
     // Check if a bot of the same class is already enlisted
     const classAlreadyEnlisted = enlistedBots.some(
       (enlistedBot) => enlistedBot.bot_class === bot.bot_class
     );
- //  if a bot of the same class is already enlisted then it gives the alert"A bot of this class is already enlisted."
+    //  if a bot of the same class is already enlisted then it gives the alert"A bot of this class is already enlisted."
     if (classAlreadyEnlisted) {
       alert("A bot of this class is already enlisted.");
       return;
@@ -45,7 +45,7 @@ function App() {
     );
     setSelectedBot(null);
   }
-// Function to remove a bot from the enlistedBots state in Your Bot Army
+  // Function to remove a bot from the enlistedBots state in Your Bot Army
   function releaseBot(bot) {
     setEnlistedBots(
       enlistedBots.filter(function (enlistedBot) {
@@ -54,9 +54,9 @@ function App() {
     );
     setAllRoBots([...allRoBots, bot]);
   }
-// Function to discharge a bot by making a DELETE request to the server
+  // Function to discharge a bot by making a DELETE request to the server
   function dischargeBot(bot) {
-    fetch(`http://localhost:8003/bots/${bot.id}`, {
+    fetch(`https://json-botbattlr.onrender.com/bots/${bot.id}`, {
       method: "DELETE",
     })
       .then(function () {
@@ -75,28 +75,28 @@ function App() {
         console.error("Error discharging bot:", error);
       });
   }
-// Sets the selected bot to display its details in the BotSpecs component
+  // Sets the selected bot to display its details in the BotSpecs component
   function showBotDetails(bot) {
     setSelectedBot(bot);
   }
- // Clears the selected bot, effectively going back to the bot list view
+  // Clears the selected bot, effectively going back to the bot list view
   function goBackToList() {
     setSelectedBot(null);
   }
-// Updates the sort criteria for sorting bots by health, damage, or armor
+  // Updates the sort criteria for sorting bots by health, damage, or armor
   function sortBots(criteria) {
     setSortCriteria(criteria);
   }
-// Returns the bots list sorted based on the selected criteria (health, damage, armor)
+  // Returns the bots list sorted based on the selected criteria (health, damage, armor)
   function getSortedBots() {
     if (!sortCriteria) return allRoBots;
-// Sorts the bots in descending order based on the selected criteria
+    // Sorts the bots in descending order based on the selected criteria
     return [...allRoBots].sort((a, b) => b[sortCriteria] - a[sortCriteria]);
   }
-// Rendering YourBotArmy and BotCollection components by passing respective props and logic operation(conditional render)
+  // Rendering YourBotArmy and BotCollection components by passing respective props and logic operation(conditional render)
   return (
     <div className="app-container">
-        {/* If a bot is selected, display the BotSpecs component */}
+      {/* If a bot is selected, display the BotSpecs component */}
       {selectedBot ? (
         <BotSpecs
           selectedBot={selectedBot}
@@ -105,9 +105,12 @@ function App() {
           enlistedBots={enlistedBots}
         />
       ) : (
-         // If no bot is selected, display the main view with SortBar, YourBotArmy, and BotCollection.
+        // If no bot is selected, display the main view with SortBar, YourBotArmy, and BotCollection.
         <>
-        <p className="welcome">Welcome to **Bot Battlr**, the one and only spot in the known universe where you can custom build your own Bot Army!</p>
+          <p className="welcome">
+            Welcome to **Bot Battlr**, the one and only spot in the known
+            universe where you can custom build your own Bot Army!
+          </p>
           <SortBar onSort={sortBots} />
           {/* Display the YourBotArmy component, passing enlisted bots and handlers for releasing and discharging bots */}
           <YourBotArmy
